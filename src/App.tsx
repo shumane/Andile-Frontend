@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DashboardPage from './pages/DashboardPage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
+import BasketPage from './pages/BasketPage';
+import CheckoutPage from './pages/CheckoutPage';
+import PastOrdersPage from './pages/PastOrdersPage';
+import Navigation from './components/Nav';
+import AddProductsPage from './pages/AddProductsPage';
+import CreateOrderPage from './pages/CreateOrderPage';
+import CreateCustomerPage from './pages/CreateCustomerPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/product" element={<AddProductsPage />} />
+        <Route path="/order" element={<CreateOrderPage/>}/>
+        <Route path="/customer" element={<CreateCustomerPage/>}/>
+        <Route path="/product-details/:id" element={<ProductDetailsPage />} />
+        <Route path="/basket" element={<BasketPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/past-orders" element={<PastOrdersPage />} />
+      </Routes>
+    </Router>
   );
 }
 
